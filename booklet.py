@@ -8,7 +8,7 @@ def create_booklet(input_pdf_path, output_pdf_path):
     num_pages = len(input_pdf.pages)
     
     # Calcular el número de páginas adicionales necesarias
-    additional_pages = (4 - num_pages % 4) % 4
+    additional_pages = num_pages % 4 
     
     # Crear un nuevo archivo PDF
     output_pdf = PdfWriter()
@@ -23,7 +23,7 @@ def create_booklet(input_pdf_path, output_pdf_path):
     
     # Reordenar las páginas para el booklet
     booklet_order = []
-    for i in range(total_pages // 2):
+    for i in range(int(total_pages / 4)):
         booklet_order.append(total_pages - 1 - i * 2)
         booklet_order.append(i * 2)
         booklet_order.append(i * 2 + 1)
